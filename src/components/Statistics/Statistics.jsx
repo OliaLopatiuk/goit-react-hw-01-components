@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import {Heading, Container, StatList, ListItem, StatType, StatData} from './Statistics.styled'
 
-export const Statistics = ({children, stats}) => (
+export const Statistics = ({title, stats}) => (
     <Container>
-  <Heading>{children}</Heading>
-
-  <StatList>
+      {
+        title && <Heading>{title}</Heading>
+      }
+ <StatList>
     {stats.map(data => <ListItem key={data.id} style={{backgroundColor: backgroundColor()}} >
       <StatType>{data.label} </StatType>
       <StatData>{data.percentage}%</StatData>
@@ -15,7 +16,7 @@ export const Statistics = ({children, stats}) => (
 )
 
 Statistics.propTypes = {
-    children: PropTypes.string,
+    title: PropTypes.string,
     stats: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string,
         label: PropTypes.string,
